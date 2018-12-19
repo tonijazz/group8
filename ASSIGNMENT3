@@ -1,0 +1,38 @@
+package com.company;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+	String fileName = "/home/toni25/CSV.csv";
+        //TODO: read about File
+	File file = new File(fileName);
+	try {
+	    //ignores the first lines
+	    Scanner inputStream = new Scanner(file);
+	    double sum = 0 ;
+	    double numberOfStudent = 0 ;
+
+	    while (inputStream.hasNext()){
+            inputStream.next();
+	        //this displays a whole line
+            String data = inputStream.next();
+            String[] values = data.split(",");
+            double CA = Double.parseDouble(values[2]);
+	        double UE = Double.parseDouble(values[3]);
+             sum = CA + UE;
+             numberOfStudent++;
+            System.out.println(data);
+        }
+	    inputStream.close();
+	    System.out.println("Average =" +(sum/numberOfStudent));
+
+    } catch (FileNotFoundException e){
+	    //TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+    }
+}
